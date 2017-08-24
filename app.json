@@ -1,5 +1,16 @@
 {
   "expo": {
+    "name": "Don't be Daft",
+    "slug": "db-daft",
+    "privacy": "public",
+    "icon": "./static/icon.png",
+    "version": "1.0.0",
+    "ios": {
+      "bundleIdentifier": "com.dafty.dbdaft"
+    },
+    "android": {
+      "package": "com.dafty.dbdaft"
+    },
     "sdkVersion": "20.0.0"
   }
 }

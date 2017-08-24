@@ -1,5 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Share, Vibration } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  Image,
+  View,
+  Button,
+  Switch,
+  Share,
+  Vibration
+} from "react-native";
 import { generateWords, isVowel } from "./utils";
 
 export default class App extends React.Component {
@@ -50,26 +59,57 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <View style={styles.row}>
           <Text style={styles.heading}>
+            <Image
+              style={styles.dafty}
+              source={require("./static/dafty.png")}
+            />
             You sir, are {preposition}...
           </Text>
         </View>
         <View style={styles.row}>
-          <Text onLongPress={() => this.toggleWordLock("word1")}>
-            {word1.value},
-          </Text>
+          <View style={styles.column}>
+            <Text
+              style={styles.word}
+              onLongPress={() => this.toggleWordLock("word1")}
+            >
+              {word1.value},
+            </Text>
+            <Switch
+              onTintColor="#d1b5e20"
+              value={this.state.word1.locked}
+              onValueChange={() => this.toggleWordLock("word1")}
+            />
+          </View>
+          <View style={styles.column}>
+            <Text
+              style={styles.word}
+              onLongPress={() => this.toggleWordLock("word2")}
+            >
+              {word2.value},
+            </Text>
+            <Switch
+              onTintColor="#d1b5e20"
+              value={this.state.word2.locked}
+              onValueChange={() => this.toggleWordLock("word2")}
+            />
+          </View>
+          <View style={styles.column}>
+            <Text
+              style={styles.word}
+              onLongPress={() => this.toggleWordLock("word3")}
+            >
+              {word3.value}
+            </Text>
+            <Switch
+              onTintColor="#d1b5e20"
+              value={this.state.word3.locked}
+              onValueChange={() => this.toggleWordLock("word3")}
+            />
+          </View>
         </View>
         <View style={styles.row}>
-          <Text onLongPress={() => this.toggleWordLock("word2")}>
-            {word2.value},
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text onLongPress={() => this.toggleWordLock("word3")}>
-            {word3.value}
-          </Text>
-        </View>
-        <View style={styles.buttonRow}>
           <Button
+            color="#d60000"
             onPress={() => {
               Vibration.vibrate(1, true);
               return this.getNewWords();
@@ -77,6 +117,7 @@ export default class App extends React.Component {
             title="Generate new"
           />
           <Button
+            color="#d60000"
             onPress={() => {
               Vibration.vibrate(1, true);
               return Share.share({
@@ -99,14 +140,22 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   heading: {
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: "serif"
   },
-  buttonRow: {
-    flex: 3,
-    justifyContent: "space-around"
+  word: {
+    fontSize: 15,
+    fontFamily: "serif",
+    marginRight: 5,
+    paddingRight: 10
   },
   row: {
     flex: 1,
+
     justifyContent: "space-around"
-  }
+  },
+  column: {
+    flexDirection: "row"
+  },
+  dafty: {}
 });
